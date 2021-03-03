@@ -1,0 +1,20 @@
+---
+- hosts: webservers 
+  tasks:
+     - block:
+        - name: block
+          uri:
+             url: https://google.com
+             status_code: 200
+        - name: access content
+          debug:
+                  msg: "i am access"
+       rescue:
+           - name: rescue
+             debug:
+                     msg: "can not access"
+       always:  
+          - name: always
+            debug:
+              msg: "true/false"       
+                  

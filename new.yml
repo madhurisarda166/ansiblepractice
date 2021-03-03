@@ -1,0 +1,11 @@
+---
+- name: installing
+  hosts: webservers
+  vars:
+          pkg: httpd
+  tasks:
+     - name: install {{ pkg }}
+       yum: 
+        name: "{{pkg}}"
+        state: present
+

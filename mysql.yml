@@ -1,0 +1,25 @@
+---
+- name: setup mariadb 
+  hosts: webservers
+  vars_files:
+      - var.yml
+  tasks: 
+    - name: install mariadb-server
+      yum: 
+       name: 
+         - mariadb-server
+         - MySQL-python 
+       state: present
+    - name: start mariadb-server
+      service:
+        name: mariadb
+        state: started
+        enabled: true
+    - name: mysql_root_password
+      mysql_user:
+              login_user: root
+              login_password: "{{ login_passwd }}"
+              user: "{{ login_admin }}"
+              check_implicit_admin: true
+              password: "{{ login_passwd }}"
+              host: localhost       

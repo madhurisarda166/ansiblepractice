@@ -1,0 +1,6 @@
+
+[webservers]
+node-1
+node-2
+[webservers:vars]
+pkg=vsftpd

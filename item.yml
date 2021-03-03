@@ -1,0 +1,20 @@
+---
+- name: httpd.yml
+  hosts: node-1
+  vars: 
+    pkg:
+       - httpd
+       - samba
+  tasks:
+      - name: install {{pkg}}
+        yum: 
+           name: "{{pkg}}"
+           state: present
+      - name: start and enabled services
+        service:
+              name: "{{ item }}"
+              state: started
+              enabled: true
+        with_items:
+          - httpd
+          - smb        

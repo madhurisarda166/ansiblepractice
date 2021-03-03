@@ -1,0 +1,13 @@
+---
+- name: installing
+  hosts: webservers
+  tasks:
+    - name: installing
+      yum: 
+        name: maria
+        state: present
+      ignore_errors: yes
+    - name: message
+      debug:
+          msg: not installed    
+       

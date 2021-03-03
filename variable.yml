@@ -1,0 +1,17 @@
+---
+- name: installing 
+  hosts: webservers
+  tasks:
+       - name:  install
+         yum:
+            name: "{{pkg}}"
+            state: present
+            #- name: enabling
+         #service: 
+         #name: "{{item}}"
+            #state: started
+            #enabled: true
+            #with_items:
+            # - httpd 
+            # - smb  
+            

@@ -1,0 +1,13 @@
+---
+ - name: playbook for CPU Utilization
+   hosts: webservers
+   tasks:
+    - name: Cpu Usage
+      shell : "top|awk''{print $4}|tail -1"
+      register : result
+    - name: mail to Shruti Jain
+      mail:
+       to: Shruti Jain <jainshruti579@gmail.com>
+       subject:  cpu utilization for "{{ ansible_nodename }}"
+       body: "{{ result }}"
+      when: result >= 70

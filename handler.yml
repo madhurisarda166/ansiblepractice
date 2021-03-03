@@ -1,0 +1,30 @@
+---
+- name:
+  hosts: webservers
+  tasks:
+   - name:
+     group:
+       name: anny
+       state: present
+   - name: 
+     group:
+       name: potter
+       state: present     
+   - name:
+     user:
+      name: handle
+      group: anny
+      groups: potter
+      password: hand
+     notify:
+        - user_note
+  handlers: 
+    - name: user_note
+      mail:
+       to: 
+        - <aj908046@gmail.com>
+        - <sardachiku1606@gmail.com> 
+       subject: user added with its primary and secondary groups
+       body: ayeeeeeeee dabaa 
+
+

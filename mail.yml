@@ -1,0 +1,22 @@
+---
+- name: mail
+  hosts: localhost
+  tasks:
+     - block:
+         - name: stopped ec2 instances
+           ec2_instance:
+                   state: started
+                   instance_ids: 
+                     - i-0fa8a4c096cd1d9ff
+                     - i-018b5e712a97393ba
+                     - i-037ec5072d8bf06c0
+                   region-name: us-east-1    
+           register: result
+
+       always:
+          - name: sending mail
+            mail: 
+              to: MADHURI SARDA <sardachiku1606@gmail.com>
+              subject: ansible report
+              body: is ec2 instance stopped "{{ result.changed }}"
+
